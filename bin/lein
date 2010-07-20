@@ -8,8 +8,8 @@ CLOJURE_JAR="$HOME/.m2/repository/org/clojure/clojure/1.2.0-beta1/clojure-1.2.0-
 NULL_DEVICE=/dev/null
 
 # normalize $0 on certain BSDs
-if [ "$(dirname $0)" = "." ]; then
-    SCRIPT="$(which $(basename $0))"
+if [ "$(dirname "$0")" = "." ]; then
+    SCRIPT="$(which $(basename "$0"))"
 else
     SCRIPT="$0"
 fi
@@ -25,13 +25,13 @@ while [ -h "$SCRIPT" ] ; do
     fi
 done
 
-ORIGINAL_PWD=$PWD
+ORIGINAL_PWD="$PWD"
 while [ ! -r "$PWD/project.clj" ] && [ "$PWD" != "/" ] && [ ! $NOT_FOUND ]
 do
     cd ..
-    if [ "$(dirname $PWD)" == "/" ]; then
+    if [ "$(dirname "$PWD")" == "/" ]; then
         NOT_FOUND=0
-        cd $ORIGINAL_PWD
+        cd "$ORIGINAL_PWD"
     fi
 done
 
